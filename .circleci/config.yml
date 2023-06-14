@@ -1,15 +1,17 @@
 version: 2.1
 jobs:
   build:
-    executor:
-      name: python/default  # Choose the appropriate Python executor
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
       - checkout  # Check out your repository
       - run:
           name: Install dependencies
           command: |
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
+            sudo apt-get update
+            sudo apt-get install -y python3-pip
+            python3 -m pip install --upgrade pip
+            pip3 install -r requirements.txt
       - run:
           name: Run tests
           command: pytest
