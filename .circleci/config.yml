@@ -1,13 +1,9 @@
-version: 2.1
-jobs:
-  build:
-    docker:
-      - image: circleci/python:3.9  # Choose the appropriate Python version
+commands:
+  sayhello:
+    description: "A very simple command for demonstration purposes"
+    parameters:
+      to:
+        type: string
+        default: "Hello World"
     steps:
-      - checkout  # Check out your repository
-      - run:
-          name: Install dependencies
-          command: pip install -r requirements.txt
-      - run:
-          name: Run tests
-          command: pytest
+      - run: echo << parameters.to >>
